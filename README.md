@@ -2,7 +2,7 @@
 
 **Réalisé par :** Justin Foltz
 
-**Date : ** 12.2018
+**Date :** 12.2018
 
 ## Projet
 
