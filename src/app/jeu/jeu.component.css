@@ -1,0 +1,31 @@
+#bg-popup {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  
+#popup {
+    width: 65%;
+    max-width: 700px;
+    color: white!important;
+    background-color: #C8611B;
+    border: 1px solid #C8611B;
+    max-height: 90%;
+    top: 10%;
+}
+
+
+.btn-hold {
+    pointer-events:none;
+  }
+  
+
+.poster-size { 
+    width: 100px;
+    height: 150px
+}
+@media (min-width: 576px) { .poster-size  { width: 120px; height: 180px } }
+@media (min-width: 768px) { .poster-size  { width: 140px; height: 210px } }
+@media (min-width: 992px) { .poster-size  {  width: 160px; height: 240px } }
+@media (min-width: 1200px) { .poster-size  { width: 185px; height: 278px } }

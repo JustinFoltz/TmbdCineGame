@@ -1,0 +1,109 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+h1 { 
+    font-size: 1.3em; 
+    font-family: 'Times New Roman', Times, serif;
+  }
+  @media (min-width: 576px) { h1 { font-size: 1.6em; } }
+  @media (min-width: 768px) { h1 { font-size: 1.9em; } }
+  @media (min-width: 992px) { h1 { font-size: 2.4em; } }
+  @media (min-width: 1200px) { h1 { font-size: 2.8em; } }
+
+
+h2 { 
+    font-size: 0.9em; 
+    font-family: 'Times New Roman', Times, serif;
+  }
+  @media (min-width: 576px) { h2 { font-size: 1.2em; } }
+  @media (min-width: 768px) { h2 { font-size: 1.5em; } }
+  @media (min-width: 992px) { h2 { font-size: 1.8em; } }
+  @media (min-width: 1200px) { h2 { font-size: 2em; } }
+
+
+  h3 { 
+    font-size: 0.9em; 
+    font-family: 'Times New Roman', Times, serif;
+  }
+  @media (min-width: 576px) { h3 { font-size: 1em; } }
+  @media (min-width: 768px) { h3 { font-size: 1.1em; } }
+  @media (min-width: 992px) { h3 { font-size: 1.2em; } }
+  @media (min-width: 1200px) { h3 { font-size: 1.4em; } }
+
+   
+  .ft-calibri {
+    color: #3D3C38;
+    font-size: 0.7em;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    text-align: justify;
+  }
+  @media (min-width: 576px) { .ft-calibri { font-size: 0.8em; } }
+  @media (min-width: 768px) { .ft-calibri { font-size: 0.9em; } }
+  @media (min-width: 992px) { .ft-calibri { font-size: 1.2em; } }
+  @media (min-width: 1200px) { .ft-calibri { font-size: 1.4em; } }
+
+  
+  .ft-calibri-white-header {
+    color: white;
+    font-size: 1.2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: justify;
+    font-weight: bold;
+  }
+  @media (min-width: 576px) { .ft-calibri-white-header { font-size: 2em; } }
+  @media (min-width: 768px) { .ft-calibri-white-header { font-size: 2.3em; } }
+  @media (min-width: 992px) { .ft-calibri-white-header { font-size: 2.7em; } }
+  @media (min-width: 1200px) { .ft-calibri-white-header { font-size: 3.0em; } }
+
+  
+.ft-calibri-white {
+    color: white;
+    font-size: 0.7em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: justify;
+    text-align: center;
+  }
+  @media (min-width: 576px) { .ft-calibri-white { font-size: 0.8em; } }
+  @media (min-width: 768px) { .ft-calibri-white { font-size: 0.9em; } }
+  @media (min-width: 992px) { .ft-calibri-white { font-size: 1.2em; } }
+  @media (min-width: 1200px) { .ft-calibri-white { font-size: 1.4em; } }
+
+
+  .ft-calibri-white-results {
+    color: white;
+    font-size: 0.8em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: justify;
+    text-align: center;
+  }
+  @media (min-width: 576px) { .ft-calibri-white-results { font-size: 1.0em; } }
+  @media (min-width: 768px) { .ft-calibri-white-results { font-size: 1.1em; } }
+  @media (min-width: 992px) { .ft-calibri-white-results{ font-size: 1.4em; } }
+  @media (min-width: 1200px) { .ft-calibri-white-results { font-size: 1.6em; } }
+
+  
+  .btn-outline-custom { 
+    background-color: #faf0ea; 
+    background-repeat: repeat-x; 
+    border-color: #C8611B;
+    color: #C8611B;
+    font-size: 0.7em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  @media (min-width: 576px) { .btn-outline-custom { font-size: 0.8em; } }
+  @media (min-width: 768px) { .btn-outline-custom { font-size: 0.9em; } }
+  @media (min-width: 992px) { .btn-outline-custom { font-size: 1.2em; } }
+  @media (min-width: 1200px) { .btn-outline-custom { font-size: 1.4em; } }
+  
+  
+  .btn-outline-custom:hover, .btn-outline-custom.hover, .btn-outline-custom.active { 
+    background-color:#C8611B; 
+    color: white;
+  }
+  
+  .btn-outline-custom:active, .btn-outline-custom.active {
+    box-shadow: none; 
+  }
+
+
+

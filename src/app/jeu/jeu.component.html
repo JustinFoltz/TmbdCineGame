@@ -1,0 +1,174 @@
+<div class="container-fluid" >
+
+    <div class="row mt-3 mt-md-5 bg-dark rounded justify-content-between">
+            <h2 *ngIf="qestionMax >= question" class="col- m-0 ml-3 ml-md-5 py-1 py-md-2 text-left text-light">Question n°{{question}}/{{qestionMax}}</h2>
+            <h2 *ngIf="question > qestionMax" class="col- m-0 ml-3 ml-md-5 py-1 py-md-2 text-left text-light">Question n°{{qestionMax}}/{{qestionMax}}</h2>
+            <h2 class="col- m-0 mr-3 mr-md-5 py-1 py-md-2 text-right text-light">Score: {{score}}pts</h2>
+    </div>
+
+
+    <h2 class="row mt-3 mt-md-5 mb-0 p-1 p-md-2 bg-dark rounded-top text-light justify-content-center">RESUME</h2>
+    <div class="row mt-0 border bg-light border-dark rounded-bottom justify-content-around ">
+            <div class="row w-100 my-2 my-md-4 px-3 px-md-4 justify-content-around ft-calibri"> {{film.shortResume}}</div>
+    </div>
+
+
+    <h2 *ngIf="mode!=='1'" 
+        class="row mt-3 mt-md-5 mb-0 p-1 p-md-2 bg-dark rounded-top text-light justify-content-center">
+        CHOOSE THE RIGHT FILM
+    </h2>
+    <div *ngIf="mode!=='1'" 
+        class="row mt-0 border bg-light border-dark rounded-bottom justify-content-around ">
+        <div class="row w-100 my-2 my-md-4 px-3 pb-1 justify-content-around">
+            <button type="button" 
+                *ngFor="let film of films" 
+                class="btn mt-1 mt-md-2 p-1 p-sm-2 p-md-3 btn-outline-custom btn-lg btn-block text-truncate"
+                [class.btn-hold]="isAnswer"
+                (click)="checkResponse(film.title)"> {{film.title}}
+            </button>
+        </div>  
+    </div>
+
+
+    <h2 *ngIf="mode==='1'" 
+        class="row mt-3 mt-md-5 mb-0 p-1 p-md-2 bg-dark rounded-top text-light justify-content-center">
+        FIND THE RIGHT TITLE FILM
+    </h2>
+
+
+    <div *ngIf="mode==='1'" 
+        class="row mt-0 border bg-light border-dark rounded-bottom justify-content-around ">
+        <div class="row w-100 my-2 my-md-4 px-3 justify-content-around">
+            <div class="input-group">
+                <input [(ngModel)]="inputResponse" type="text" class="form-control">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-custom my-0 py-0" type="button"
+                    [class.btn-hold]="isAnswer"
+                    (click)="checkResponse()"> OK
+                </button>
+                </div>
+              </div>
+        </div>
+    </div>
+
+
+    <h2 class="row mt-3 mt-md-5 mb-0 p-1 p-md-2 bg-dark rounded-top text-light justify-content-center">
+        PICK A CLUE :
+    </h2>
+
+    <div class="row mt-0 pb-2 pb-md-4 px-3 bg-light border border-dark rounded-bottom justify-content-around ">
+        
+        <div *ngIf="nbClues.length > 0" class="row w-100 mt-2 mt-md-4 justify-content-around">
+            <button class="col-2 col-md-1 btn btn-outline-custom"
+                    *ngFor="let i of nbClues"
+                    [class.btn-hold]="isAnswer"
+                    (click)=loadClues()>?
+            </button>
+        </div>
+
+        <div class="row w-100 mt-2 mt-md-4 border border-dark rounded" *ngIf="4 > nbClues.length">
+            <div class="col-md-2 px-md-3 py-md-3 bg-dark text-light ft-calibri ">{{cluesHeader[0]}}</div>
+            <div class="col-md- px-4 py-md-3 ft-calibri rounded-bottom  text-truncate" *ngFor="let string of clues[0]; let i = index"> {{clues[0][i]}} </div>
+        </div>
+
+        <div class="row w-100 mt-2 mt-md-2 border border-dark rounded" *ngIf="3 > nbClues.length">
+            <div class="col-md-2 px-md-3 py-md-3 bg-dark text-light ft-calibri">{{cluesHeader[1]}}</div>
+            <div class="col-md- px-4 py-md-3 ft-calibri  text-truncate" *ngFor="let string of clues[1]; let i = index"> {{clues[1][i]}} </div>
+        </div>
+
+        <div class="row w-100 mt-2 mt-md-2 border border-dark rounded" *ngIf="2 > nbClues.length">
+            <div class="col-md-2 px-md-3 py-md-3 bg-dark text-light ft-calibri">{{cluesHeader[2]}}</div>
+            <div class="col-md- px-4 py-md-3 ft-calibri  text-truncate" *ngFor="let string of clues[2]; let i = index"> {{clues[2][i]}} </div>
+        </div>
+
+        <div class="row w-100 mt-2 mt-md-2 border border-dark rounded" *ngIf="1 > nbClues.length">
+            <div class="col-md-2 px-md-3 py-md-3 bg-dark text-light ft-calibri">{{cluesHeader[3]}}</div>
+            <div class="col-md- px-4 py-md-3 ft-calibri  text-truncate" *ngFor="let string of clues[3]; let i = index"> {{clues[3][i]}} </div>
+        </div>
+    </div>
+
+    <div *ngIf="!userExit" class="row my-3 my-md-4 my-lg-5 justify-content-around ">
+        <button class="col-md-3 btn py-md-4 btn-dark btn-lg btn-block rounded"
+        [class.btn-hold]="isAnswer"
+        (click)="userExit=true">EXIT GAME</button> 
+    </div>
+
+   <div *ngIf="userExit" class="my-3 my-md-4 my-lg-5 ">  
+        <div class="row justify-content-around ft-calibri">Are you sure, you can still earn points </div>
+        <div class="row justify-content-around mt-2 mt-md-3">
+            <button 
+                class="col-md-3 btn py-md-4 btn-dark btn-lg btn-block rounded"
+                [class.btn-hold]="isAnswer"
+                (click)="end=true"> YES
+            </button> 
+            <button 
+                class="col-md-3 btn py-md-4 btn-dark btn-lg btn-block rounded"
+                [class.btn-hold]="isAnswer"
+                (click)="userExit=false"> NO
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div id="bg-popup" *ngIf="isAnswer" class="container-fluid fixed-top"></div>
+<div id="popup" *ngIf="isAnswer" class="container-fluid fixed-top rounded">
+
+        <div *ngIf="answer" class="row mt-2 mt-sm-2 mt-md-4 justify-content-around ft-calibri-white-header font-weight-bold">WELL DONE ! </div>
+        <div *ngIf="!answer" class="row mt-2 mt-sm-2 mt-md-4 justify-content-around ft-calibri-white-header font-weight-bold">WRONG</div> 
+        <div *ngIf="!answer" class="row row mt-2 mt-sm-2 mt-md-4 px-4 px-md-5 justify-content-center ft-calibri-white">
+            <div class="col-">The film was :&nbsp; </div>
+            <div class="col- font-weight-bold">{{this.film.title}}</div>
+        </div> 
+
+        <div *ngIf="film.poster !== ''" class="row mt-3 mt-md-3 justify-content-center">
+            <img class="poster-size" [src]="film.poster">
+        </div>
+
+        <div class="row mt-3 mt-sm-4 mt-md-5 mb-3 mb-sm-4 mb-md-5 justify-content-center">    
+            <button 
+                class="col-6 col-sm-5 col-md-4 btn py-2 py-sm-3 py-md-4 btn-dark btn-lg rounded" 
+                (click)="returnToGAme()"> BACK
+            </button>
+        </div>
+</div>
+
+
+<div id="bg-popup" *ngIf="end" class="container-fluid fixed-top"></div>
+<div id="popup" *ngIf="end" class="container-fluid fixed-top rounded">
+
+    <div *ngIf="continue === 0" class="row mt-2 mt-sm-2 mt-md-4 justify-content-around ft-calibri-white-header font-weight-bold">GAME OVER</div>
+    <div *ngIf="continue > 0" class="row mt-2 mt-sm-2 mt-md-4 justify-content-around ft-calibri-white-header font-weight-bold">FINISH</div>
+
+    
+    <div class="row mt-3 mt-md-3 justify-content-center">
+            <img *ngIf="score >= 45" class="img-size" src="././assets/img/smiley/great.png">
+            <img *ngIf="score >= 35 && 45 > score" class="img-size" src="././assets/img/smiley/veryGood.png">
+            <img *ngIf="score >= 25 && 35 > score" class="img-size" src="././assets/img/smiley/good.png">
+            <img *ngIf="score >= 15 && 25 > score" class="img-size" src="././assets/img/smiley/notGood.png">
+            <img *ngIf="score >= 0 && 15 > score" class="img-size" src="././assets/img/smiley/bad.png">
+    </div>
+
+        
+    <div class="">
+        <div class="row mt-3 justify-content-around ft-calibri ft-calibri-white-results font-weight-bold"> Your score is {{score}}/{{maxPoints}}</div>
+        <div *ngIf="score>=45 && mode !== '2'" class="row justify-content-around ft-calibri-white font-italic">Great game !! </div>
+        <div *ngIf="score>=45 && mode === '2'" class="row justify-content-around ft-calibri-white font-italic">Great game, but you played in easy mode. Try harder...</div>
+        <div *ngIf="score>=35 && 45 > score" class="row justify-content-around ft-calibri-white font-italic">Good game</div>
+        <div *ngIf="score>=25 && 35 > score" class="row justify-content-around ft-calibri-white font-italic">Not so bad</div>
+        <div *ngIf="score>=15 && 25 > score && mode === '2'" class="row justify-content-around ft-calibri-white font-italic">Try to answer randomly, you may be lucky...</div>
+        <div *ngIf="score>=15 && 25 > score && mode === '4'" class="row justify-content-around ft-calibri-white font-italic">Not really good, you could be better</div>
+        <div *ngIf="score>=15 && 25 > score && mode === '1'" class="row justify-content-around ft-calibri-white font-italic">Hard mode is tricky, try to reduce difficulty</div>
+        <div *ngIf="score>=0 && 15 > score && mode !== '1'" class="row justify-content-around ft-calibri-white font-italic">Did you really played ??</div>
+        <div *ngIf="score>=0 && 15 > score && mode === '1'" class="row justify-content-around ft-calibri-white font-italic">Try to reduce difficulty</div>
+    </div>
+
+
+    <div class="row mt-3 mt-sm-4 mt-md-5 mb-3 mb-sm-4 mb-md-5 justify-content-center">   
+        <button 
+            class="col-6 col-sm-5 col-md-4 btn py-2 py-sm-3 py-md-4 btn-dark btn-lg rounded" 
+            [routerLink]="['/dashboard']"> EXIT
+        </button>
+    </div>
+
+</div>
