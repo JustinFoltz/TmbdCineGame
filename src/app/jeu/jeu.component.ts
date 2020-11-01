@@ -1,3 +1,9 @@
+/**
+ * @author Justin Foltz <justin.foltz@gmail.com>
+ * Date 12.2018
+ */
+
+
 import { Component, OnInit } from '@angular/core';
 import { JeuService } from '../jeu.service';
 import { Film } from '../Film';
@@ -40,7 +46,7 @@ export class JeuComponent implements OnInit {
 
   ngOnInit() { this.selectFilms(); }
 
-  //recupere et traite les informations de JeuService
+  //Get and manage JeuService informations
   selectFilms(): void { 
     new Promise( (resolve, reject) => {this.route.params.subscribe(params => {resolve(params);})}).then (value => {
       this.mode = value["mode"];
@@ -71,13 +77,13 @@ export class JeuComponent implements OnInit {
     });
   }
 
-  //affiche un indice sur le tempate
+  //Display a clue on template
   loadClues() {
     if(this.nbClues.length>0) this.nbClues.pop();
     this.points -= 1;
   }
 
-  //verifie traite la réponse utilisateur
+  //Check and process user response
   checkResponse(selectedFilm?: string) {
     if(!selectedFilm) {
       selectedFilm = this.inputResponse;
@@ -90,7 +96,7 @@ export class JeuComponent implements OnInit {
     this.question += 1;
   }
 
-  //réinitialise les parametres et recharge une question ou termine partie
+  //Init parameters and reload a question or ends the game
   returnToGAme() {
     this.isAnswer = false;
     if(this.continue > 0 && this.question <= this.qestionMax) {  
@@ -102,17 +108,17 @@ export class JeuComponent implements OnInit {
     } else { this.end = true; }
   }
 
-  //vérifie si selectedFilm est la réponse à la question
+  //Check if selectedFilm is the good answer
   isValideReponse( selectedFilm: string): boolean { 
     return selectedFilm === this.film.title; 
   }
 
-  //mélange les lignes tableau de films
+  //Randomize rows of films array
   randomizeFilms(films: Film[]): Film[] {
     return this.getSomeFilms(films.length, films);
   }
 
-  //selectionne aléatoirement some films dans un tableau de type Film
+  //Random get some films in an films array
   getSomeFilms(some: number, allFilms: Film[]): Film[] {
     some = Math.min(some, allFilms.length)
     let range: number[] = this.getRandomRange(0, some);
@@ -121,7 +127,7 @@ export class JeuComponent implements OnInit {
     return someFilms;
   } 
 
-  //renvoie un tableau comprenant tous les nombres entre min(inclus) et max(exclu) dans un ordre aléatoire 
+  //Build a random array with min (include) and max (exclude) 
   getRandomRange(min: number, max: number): number[] {
     let range: number[] = new Array<number>();
     for( let i = min; i < max; i++) { range.push(i); }
@@ -134,7 +140,7 @@ export class JeuComponent implements OnInit {
     return randomRange;
   }
 
-  //selectionne 4 indices au hasard en fonction de ceux disponibles
+  //Picks 4 random clues among those available
   getRandomHints(): string[][] {
     let indexMax = this.film.availlableClues.length;
     let randomIndex: number[] = this.getRandomRange(0, indexMax);
@@ -143,7 +149,7 @@ export class JeuComponent implements OnInit {
     return randomHints;     
   }
 
-  //supprime les entetes contenus dans clues et les stocke dans cluesHeaders
+  //Delete clues' headers and store them into clueHeaders
   extractCluesHeaders(): void {
       for(let i = 0; i < this.nbClues.length; i++) {
         console.log("this.clues[i] : ", i, " : ", this.clues[i])

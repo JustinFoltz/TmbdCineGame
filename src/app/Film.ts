@@ -1,3 +1,8 @@
+/**
+ * @author Justin Foltz <justin.foltz@gmail.com>
+ * Date 12.2018
+ */
+
 import { Genres } from "./Genres";
 import { createOfflineCompileUrlResolver } from "@angular/compiler";
 export class Film {
@@ -17,7 +22,7 @@ export class Film {
         this.availlableClues = new Array<Array<string>>();
     }
 
-    //récupère et traite les données relatives au contexte d'un film fournies par JeuService
+    //Get and manage data related to films' context provided by JeuService
     setDetails(details: string[][]){
        this.manageProperties( "Genre", new Genres().convertIds( details[0] ) );
        this.manageProperties("Compagny", details[1] );
@@ -29,7 +34,7 @@ export class Film {
        this.poster = details[7][0] === null ? "././assets/img/noPoster.jpeg" : "http://image.tmdb.org/t/p/w185//" + details[7][0];
     }
 
-    //récupère et traite les données relatives au casting d'un film fournies par JeuService
+    //Get and manage data related to films' casting provided by JeuService
     setStaff(staff: string[][]) {
         this.manageProperties( "Actor", staff[0] );
         this.manageProperties( "Director", staff[1]);
@@ -37,7 +42,7 @@ export class Film {
         this.manageProperties( "Composer", staff[3]);
     }
 
-    //formate et stocke dans availlableClues les indices valides (non vide ou non 0)
+    //Format and store in availlableClues the valid clues (not empty or not 0)
     private manageProperties(name: string, properties: string[] ): string[] {
         if(properties.length === 0 || +properties[0] < 10000) return [];
         if( properties.length > this.maxItems) properties = this.getSomeProperties(this.maxItems, properties);
@@ -52,7 +57,7 @@ export class Film {
         return formatProperty;
     }
 
-    //formatage des données monétaires (séparateur de millier et $)
+    //Format monetary data (thousand separator and $)
     private manageMoney( amount: string ): string {
         let strAmount: string = String(amount);
         let newAmount: string = "";
@@ -64,14 +69,14 @@ export class Film {
         return newAmount+'$';
     }
 
-    //formatage des données de date (mois-jour-année)
+    //Format date data (month-day-year)
     private manageDate( date: string ): string {
         let dates: string[] = date.split('-');
         date = dates[1]+"."+dates[2]+"."+dates[0];
         return date;
     }
 
-
+    // Return some no empty propterties from a properties list
     getSomeProperties( some: number, properties: string[] ): string[] {
         let propertiesNoVoid: string[] = properties.filter( element => element !== "").map(element => " "+element);
         some = Math.min(some, propertiesNoVoid.length)

@@ -1,23 +1,38 @@
 # TmbdCineGame
 
-**Réalisé par :** Justin Foltz
+**Directed by:** Justin Foltz
 
 **Date :** 12.2018
 
-## Projet
+## Project's description
 
-TmbdCineGame est application web sous la forme d’un quizz cinématographique. Le jeu s’organise autour de questions constituées du résumé d’un film et de plusieurs propositions de titres. Le but étant de retrouver le titre correspondant au résumé affiché. Quatre indices relatifs au contexte du film peuvent être révélées par l’utilisateur s’il en éprouve le besoin. A chaque bonne réponse, le score est incrémenté de 1 à 5 points en fonction du nombre d’indices révélés (-1 point par indice révélé). La partie s’arrête au bout de 10 questions ou après 2 mauvaises réponses. Pour varier les parties, l’utilisateur peut, en début de jeu, filtrer par genre, années, ou langage, les films qui lui seront présentés. Il a de plus le choix entre trois modes de difficulté croissant : figurant, assistant ou réalisateur, directement liés au nombre de propositions qui lui seront faites (respectivement 2, 4 ou aucune). 
+TmbdCineGame is a web application in the form of a cinematic quiz. The game is organized around questions made up of a film summary and several title proposals. The goal is to find the title corresponding to the displayed summary. Four clues related to the context of the film can be revealed by the user if he feels the need. For each correct answer, the score is incremented by 1 to 5 points according to the number of clues revealed (-1 point per clue revealed). The game ends after 10 questions or after 2 wrong answers. To vary the games, the user can, at the beginning of the game, filter by genre, years, or language, the films that will be presented to him. In addition, he can choose between three modes of increasing difficulty: extra, assistant or director, directly linked to the number of proposals that will be made (respectively 2, 4 or none). 
 
 ![](./illustration.jpg)
 
 ## Technologies
 
-Réalisé avec [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2. Les donnés sur les films sont fournies par l'[API TMBD](https://developers.themoviedb.org/3/getting-started/introduction).
+* [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2. 
+* [API TMBD](https://developers.themoviedb.org/3/getting-started/introduction) : provide films data
 
-## Lancement du projet
+## Running the project
 
-Lancez la commande ci-dessous dans le répertoire racine du projet :
+**Requirement** : [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2. must be installed.
 
-```bash
-ng serve --open
-```
+1. Clone the repository
+
+2. Get a [TMBD API KEY](https://developers.themoviedb.org/3/getting-started/introduction) and add it to `src/app/jeu.service.ts`  :
+
+   ```typescript
+   19   private APIKEY: string = "your api key";
+   ```
+
+3. In project root folder, run the below command : 
+
+   ```bash
+   ng serve --open
+   ```
+
+   
+
+   

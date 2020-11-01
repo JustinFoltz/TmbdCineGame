@@ -1,6 +1,12 @@
+/**
+ * @author Justin Foltz <justin.foltz@gmail.com>
+ * Date 12.2018
+ */
+
+
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; //HttpHeaders
-import { Observable } from 'rxjs'; //of
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Film } from './Film';
 
 
@@ -10,11 +16,12 @@ import { Film } from './Film';
 export class JeuService {
   private URL: string = "https://api.themoviedb.org/3/"
   private LANGUAGE: string= "&language=en-EN";
-  private KEY: string = "&api_key=3f64aacc93686241692de7d6947aa44d";
+  private APIKEY: string = "your api key";
+  private KEY: string = "&api_key=" + this.APIKEY;
 
   constructor( private http: HttpClient ) { }
 
-  //construction de l'url d'un requete en fonction de parametres spécifiques
+  //Build request url depending on parameters
   constructPersonalizedRequest( baseUrl: string, startYear: string, endYear: string , genreId: string, country: string ): string {
     return  baseUrl 
             + "&release_date.gte=" + startYear
@@ -23,7 +30,7 @@ export class JeuService {
             + "&with_original_language=" + country; 
   }
 
-  //renvoi le nombre maximal de pages d'une requete spécifique
+  //Return the number max of pages of request
   getMaxPage(startYear: string, endYear: string, genreId: string, country: string): Promise<number> {
     let baseRequest: string = "discover/movie?&include_adult=false&page=1";
     let request = this.constructPersonalizedRequest(baseRequest, startYear, endYear, genreId, country);
@@ -35,7 +42,7 @@ export class JeuService {
 
   }
 
-  //renvoi une liste de Films contenue dans une page aléatoire d'une requete spécifique 
+  //Return a list of films in a random page 
   getFilms(maxPage: number, startYear: string, endYear: string, genreId: string, country: string): Promise<Film[]> {
     let baseRequest: string = "discover/movie?&include_adult=false";
     let request = this.constructPersonalizedRequest(baseRequest, startYear, endYear, genreId, country);
@@ -55,7 +62,7 @@ export class JeuService {
     })
   }
  
-  //récupère les données de contexte d'un film à partir de son id
+  //Get context data of a film by ID
   getFilmDetails(idFilm: string): Promise<string[][]> {
     console.log("idFilm", idFilm);
     let request: string = "movie/" + idFilm + "?";
@@ -82,7 +89,7 @@ export class JeuService {
     });
   }
 
-  //récupère les données de casting d'un film à partir de son id
+  //Get casting data of a film by ID
   getFilmStaff(idFilm: string): Promise<string[][]> {
     let request: string = "movie/" + idFilm + "/credits?";
     return new Promise( (resolve, reject) => {

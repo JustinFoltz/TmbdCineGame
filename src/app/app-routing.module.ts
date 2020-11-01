@@ -1,3 +1,8 @@
+/**
+ * @author Justin Foltz <justin.foltz@gmail.com>
+ * Date 12.2018
+ */
+
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JeuComponent } from './jeu/jeu.component';

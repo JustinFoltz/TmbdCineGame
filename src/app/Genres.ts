@@ -1,10 +1,16 @@
+/**
+ * @author Justin Foltz <justin.foltz@gmail.com>
+ * Date 12.2018
+ */
+
+
 import { formControlBinding } from "@angular/forms/src/directives/reactive_directives/form_control_directive";
 import { query } from "@angular/core/src/render3";
 
 
 export class Genres  {
     
-    //correspondance entre id tmbd et nom de genre
+    //Tmbd id vs genre of film
     private genres = [
         { "id": 28, "name": "Action" },
         { "id": 12, "name": "Aventure" },
@@ -27,14 +33,14 @@ export class Genres  {
         { "id": 37,"name": "Western" }
     ]
 
-    //convertit un id genre au format tmbd par son nom
+    //Get name of genre from id
     private convertId(id: string): string {
         let strGenre = this.genres.filter( element => element.id === +id);
         if(strGenre.length == 0) return "";
         return strGenre[0].name;
     }
 
-    //convertit un tableau id genre au format tmbd par un tableau de nom
+    //Get names arrays of genre from array of ids
     convertIds(ids: string[]): string[] {
         if( ids.length == 0) return [];
         return ids.filter(element => element !== "").map(element => this.convertId(element));
