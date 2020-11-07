@@ -15,7 +15,7 @@ TmbdCineGame is a web application in the form of a cinematic quiz. The game is o
 * [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2. 
 * [API TMBD](https://developers.themoviedb.org/3/getting-started/introduction) : provide films data
 
-## How to run the project
+## How to run the project ?
 
 ### Requirement
 
